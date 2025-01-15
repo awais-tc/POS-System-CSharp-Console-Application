@@ -10,54 +10,7 @@ namespace POS_System
     {
         public AdminUser(string name) : base(name, UserRole.Admin) { }
 
-        public void AddProduct(List<Product> inventory)
-        {
-            string name;
-            double price;
-            int stock;
-
-            while (true)
-            {
-                Console.Write("Enter product name (letters only): ");
-                name = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(name) && name.All(char.IsLetter))
-                    break;
-
-                Console.WriteLine("Invalid input! Product name must contain letters only and cannot be empty.");
-            }
-
-            while (true)
-            {
-                Console.Write("Enter price: ");
-                if (double.TryParse(Console.ReadLine(), out price) && price > 0)
-                    break;
-
-                Console.WriteLine("Invalid input! Price must be a positive number.");
-            }
-
-            while (true)
-            {
-                Console.Write("Enter stock quantity: ");
-                if (int.TryParse(Console.ReadLine(), out stock) && stock > 0)
-                    break;
-
-                Console.WriteLine("Invalid input! Stock quantity must be a positive number.");
-            }
-
-            Console.Write("Enter barcode: ");
-            string barcode = Console.ReadLine();
-
-            inventory.Add(new Product
-            {
-                ProductId = inventory.Count + 1,
-                Name = name,
-                Price = price,
-                StockQuantity = stock,
-                Barcode = new Barcode(barcode)
-            });
-
-            Console.WriteLine("Product added successfully!");
-        }
+        
 
         public void UpdateProduct(int productId, List<Product> inventory)
         {
@@ -122,6 +75,57 @@ namespace POS_System
             {
                 Console.WriteLine("No sales report available.");
             }
+        }
+
+        
+
+        public void AddProduct(List<Product> inventory)
+        {
+            string name;
+            double price;
+            int stock;
+
+            while (true)
+            {
+                Console.Write("Enter product name (letters only): ");
+                name = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(name) && name.All(char.IsLetter))
+                    break;
+
+                Console.WriteLine("Invalid input! Product name must contain letters only and cannot be empty.");
+            }
+
+            while (true)
+            {
+                Console.Write("Enter price: ");
+                if (double.TryParse(Console.ReadLine(), out price) && price > 0)
+                    break;
+
+                Console.WriteLine("Invalid input! Price must be a positive number.");
+            }
+
+            while (true)
+            {
+                Console.Write("Enter stock quantity: ");
+                if (int.TryParse(Console.ReadLine(), out stock) && stock > 0)
+                    break;
+
+                Console.WriteLine("Invalid input! Stock quantity must be a positive number.");
+            }
+
+            Console.Write("Enter barcode: ");
+            string barcode = Console.ReadLine();
+
+            inventory.Add(new Product
+            {
+                ProductId = inventory.Count + 1,
+                Name = name,
+                Price = price,
+                StockQuantity = stock,
+                Barcode = new Barcode(barcode)
+            });
+
+            Console.WriteLine("Product added successfully!");
         }
 
         public void DeleteProduct(int productId, List<Product> inventory)
