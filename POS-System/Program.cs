@@ -52,7 +52,7 @@ namespace POS_System
 
                     Console.Write("Choice: ");
                     string choice = Console.ReadLine();
-
+                    //perform operation on base of user input
                     switch (choice)
                     {
                         case "1" when currentUser.Role == UserRole.Admin:
